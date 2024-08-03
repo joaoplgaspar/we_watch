@@ -1,0 +1,14 @@
+@import 'styles/variaveis';
+
+.card_box {
+    padding-top: 12rem;
+    max-width: $page-width;
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-rows: auto;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
