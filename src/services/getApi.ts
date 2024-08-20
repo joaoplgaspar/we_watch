@@ -7,9 +7,12 @@ export default function getApi() {
     }
   };
 
-  return fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', options)
+  return fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=pt-BR&page=1&sort_by=popularity.desc', options)
     .then(response => response.json())
-    .then(data => data.results)
+    .then(data => {
+      console.log(data.results)
+      return data.results
+    })
     .catch(err => {
       console.error(err);
       return [];

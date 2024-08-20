@@ -3,7 +3,7 @@ import Logout from 'components/Logout';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styles from './Account.module.scss';
-import { useUser } from 'services/UserContext';
+import { useUser } from 'contexts/UserContext';
 
 export default function AccountPage() {
   const { userData, loading } = useUser();

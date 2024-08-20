@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { MdAccountCircle } from "react-icons/md";
 import { IoMdLogIn } from "react-icons/io";
-import { useUser } from 'services/UserContext';
+import { useUser } from 'contexts/UserContext';
 
 
 export default function Header() {
@@ -35,7 +35,7 @@ export default function Header() {
       return (
         <li>
           <Link to="/account" className={styles.nav_item}>
-            {loading ? <MdAccountCircle size={35}/> : <img src={`assets/images/avatar/${avatar}`}/>}
+            {loading ? <MdAccountCircle size={35}/> : <img src={`assets/images/avatar/${avatar}`} alt="Avatar da conta"/>}
           </Link>
         </li>
       )

@@ -1,6 +1,6 @@
-import Banner from 'components/Banner';
 import Card from 'components/Card';
 import CardsBox from 'components/CardsBox';
+import CarouselBanner from 'components/CarouselBanner';
 import { useEffect, useState } from 'react';
 import getApi from 'services/getApi';
 import { IMedia } from 'types/Media';
@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <Banner />
+      <CarouselBanner />
       <CardsBox>
         {moviesBox.map(media => <Card {...media}/>)}
       </CardsBox>

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import styles from './AccountEdit.module.scss';
 import { IoMdPerson, IoMdClose } from "react-icons/io";
-import { useAuth } from 'services/AuthContext';
-import { useUser } from 'services/UserContext';
+import { useAuth } from 'contexts/AuthContext';
+import { useUser } from 'contexts/UserContext';
 import Input from 'components/Input';
 import ButtonSubmit from 'components/ButtonSubmit';
 import classNames from 'classnames';
-import avatares from 'json/avatar.json';
 import ImagePicker from './ImagePicker';
 import useFirebase from 'hooks/useFirebase';
+
+import avatares from 'json/avatar.json';
 
 interface Props {
     visible: boolean;
