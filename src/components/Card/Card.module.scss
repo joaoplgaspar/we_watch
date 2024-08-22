@@ -66,6 +66,7 @@
         .card__hover__title {
             font-size: 1.8rem;
             font-family: $font-title;
+            cursor: pointer;
         }
 
         .description {
@@ -78,6 +79,7 @@
             overflow: hidden;
             max-height: 200px;
             display: flex;
+            cursor: pointer;
         }
 
         .btns {

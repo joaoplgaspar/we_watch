@@ -6,14 +6,11 @@ import BtnAddToFavorite from 'components/BtnAddToFavorite';
 import { useMediaExtend } from 'contexts/MediaExtendContext';
 
 interface CardProps {
-  mediaData?: IMedia
-  title: IMedia["title"]
-  poster_path: IMedia["poster_path"]
-  overview: IMedia["overview"]
+  mediaData: IMedia
   relTop?: boolean
 }
 
-export default function Card({title, poster_path, overview, relTop, mediaData }: CardProps) {
+export default function Card({relTop, mediaData}: CardProps) {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
   const POSTER_SIZE = 'w500';
   const { openMedia } = useMediaExtend();
@@ -25,21 +22,21 @@ export default function Card({title, poster_path, overview, relTop, mediaData }:
         [styles.rel_top]: relTop
       })}
     >
-      {poster_path && (
+      {mediaData.poster_path && (
         <div
           className={styles.card_image__container}
         >
           <img
-            src={`${BASE_IMAGE_URL}${POSTER_SIZE}${poster_path}`}
-            alt={title}
+            src={`${BASE_IMAGE_URL}${POSTER_SIZE}${mediaData.poster_path}`}
+            alt={mediaData.title}
             className={styles.card_image__container__image}
           />
         </div>
       )}
-      <h3 className={styles.card__title}>{title}</h3>
+      <h3 className={styles.card__title}>{mediaData.title}</h3>
       <div className={styles.card__hover_content}>
-        <h3 className={styles.card__hover__title} onClick={() => openMedia(mediaData)}>{title}</h3>
-        <p className={styles.description} onClick={() => openMedia(mediaData)}>{overview}</p>
+        <h3 className={styles.card__hover__title} onClick={() => openMedia(mediaData)}>{mediaData.title}</h3>
+        <p className={styles.description} onClick={() => openMedia(mediaData)}>{mediaData.overview}</p>
         <div className={styles.btns}>
           <BtnAddToList />
           <BtnAddToFavorite />

@@ -3,8 +3,9 @@ import { useMediaExtend } from 'contexts/MediaExtendContext'
 import styles from './ExtendsMedia.module.scss';
 import { IoMdClose } from 'react-icons/io';
 
+
 export default function ExtendsMedia() {
-  const { isOpen, closeMedia } = useMediaExtend();
+  const { isOpen, closeMedia, mediaData } = useMediaExtend();
 
   if(isOpen) document.body.style.overflow = 'hidden';
   else document.body.style.overflow = 'auto';
@@ -15,7 +16,9 @@ export default function ExtendsMedia() {
       [styles.popup__close]: !isOpen
     })}>
       <div className={styles.popup__content}>
-        <IoMdClose onClick={() => closeMedia()}/>
+        <h2>
+          {mediaData?.title}
+        </h2>
       </div>
       <div className={styles.overlay} onClick={() => closeMedia()}></div>
     </div>

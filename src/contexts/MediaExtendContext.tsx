@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState} from 'react'
+import { IMedia } from 'types/Media';
 
 interface MediaExtendContextType {
     isOpen: boolean;
-    mediaData: any;
+    mediaData: IMedia;
     openMedia: (data: any) => void;
     closeMedia: () => void;
 }
