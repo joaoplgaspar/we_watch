@@ -10,6 +10,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('')
   const navigate = useNavigate();
 
   const handleSignUp = async (event: React.FormEvent) => {
@@ -31,7 +32,7 @@ export default function SignUp() {
       
       navigate('/account?edit');
     } catch (error: any) {
-      alert(error.message);
+      setError(error.message);
     }
   }
 
@@ -46,6 +47,7 @@ export default function SignUp() {
         setPassword={setPassword}
         confirmPassword={confirmPassword}
         setConfirmPassword={setConfirmPassword}
+        error={error}
       />
     </AccessSection>
   );

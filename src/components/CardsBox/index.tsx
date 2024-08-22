@@ -1,6 +1,10 @@
 import styles from './CardsBox.module.scss'
 
-export default function CardsBox({children}: {children: React.ReactNode}) {
+interface CardsBoxProps {
+  children: React.ReactNode
+}
+
+export default function CardsBox({children}: CardsBoxProps) {
   return (
     <div className={styles.card_box}>
       {children}

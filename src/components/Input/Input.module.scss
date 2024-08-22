@@ -18,12 +18,11 @@
     .access_input {
         width: 100%;
         padding: 1.5rem 2rem;
-        border: none;
+        border: 1px solid rgba($bg-white, 0.5);
         border-radius: 5px;
         margin-right: 10px;
         margin: 0;
         background: rgba(1, 0, 22, 0.735);
-        border: 1px solid rgba($bg-white, 0.5);
         color: $texts-white;
         font-size: 1.6rem;
         font-family: $font-text;

@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <CarouselBanner />
       <CardsBox>
-        {moviesBox.map(media => <Card {...media}/>)}
+        {moviesBox.map(media => <Card {...media} relTop/>)}
       </CardsBox>
     </>
   );

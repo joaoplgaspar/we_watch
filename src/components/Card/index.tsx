@@ -1,13 +1,24 @@
 import BtnAddToList from 'components/BtnAddToList';
 import styles from './Card.module.scss';
 import { IMedia } from 'types/Media';
+import classNames from 'classnames';
 
-export default function Card({title, poster_path, overview }: IMedia) {
+interface CardProps {
+  title: IMedia["title"]
+  poster_path: IMedia["poster_path"]
+  overview: IMedia["overview"]
+  relTop?: boolean
+}
+
+export default function Card({title, poster_path, overview, relTop }: CardProps) {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
   const POSTER_SIZE = 'w500';
 
   return (
-    <div className={styles.card}>
+    <div className={classNames({
+      [styles.card]: true,
+      [styles.rel_top]: relTop
+    })}>
     {poster_path && (
       <div
         className={styles.card_image__container}

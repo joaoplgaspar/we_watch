@@ -8,6 +8,7 @@ export default function Banner({ type, local, src, alt }: IBanner) {
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
     let debounceTimeout: NodeJS.Timeout;
+    const ref = videoRef.current
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       if (debounceTimeout) {
@@ -15,31 +16,27 @@ export default function Banner({ type, local, src, alt }: IBanner) {
       }
       debounceTimeout = setTimeout(() => {
         entries.forEach((entry) => {
-          if (videoRef.current) {
+          if (ref) {
             if (entry.isIntersecting) {
-              videoRef.current.play().catch((error) => {
+              ref.play().catch((error) => {
                 console.error("Error attempting to play video:", error);
               });
             } else {
-              videoRef.current.pause();
+              ref.pause();
             }
           }
         });
-      }, 100); // Adjust debounce time as needed
+      }, 100);
     };
 
-    if (videoRef.current) {
+    if (ref) {
       observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
-      observer.observe(videoRef.current);
+      observer.observe(ref);
     }
 
     return () => {
-      if (observer && videoRef.current) {
-        observer.unobserve(videoRef.current);
-      }
-      if (debounceTimeout) {
-        clearTimeout(debounceTimeout);
-      }
+      if (observer && ref) observer.unobserve(ref);
+      if (debounceTimeout) clearTimeout(debounceTimeout);
     };
   }, []);
 

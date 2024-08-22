@@ -31,6 +31,7 @@ export default function CarouselBanner() {
             {banners.map((banner, index) => (
                 <Banner key={index} {...banner} />
             ))}
+            
         </Carousel>
     )
 }

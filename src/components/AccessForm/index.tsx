@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from 'components/Input';
 import ButtonSubmit from 'components/ButtonSubmit';
 import { IAccessForm } from 'types/Components';
+import classNames from 'classnames';
 
 export default function AccessForm ({
     action,
@@ -13,7 +14,8 @@ export default function AccessForm ({
     password,
     setPassword,
     confirmPassword,
-    setConfirmPassword
+    setConfirmPassword,
+    error
 }: IAccessForm) {
 
     const renderConfirmPasswordInput = () => (
@@ -35,15 +37,21 @@ export default function AccessForm ({
     const title = login ? 'Entrar' : 'Registrar';
 
     return (
-        <form onSubmit={(event) => action(event)} className={styles.form__container}>
+        <form onSubmit={(event) => action(event)} 
+            className={classNames({
+                [styles.form__container]: true,
+                [styles.form__error]: error === '' ? false : true
+            })}
+        >
             <h1>{title}</h1>
+            <p className={styles.error_message}>{error}</p>
             <Input 
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 placeholder="Email" 
                 required
-                label='Email'
+                label='Email'   
             />
             <Input 
                 type="password" 
