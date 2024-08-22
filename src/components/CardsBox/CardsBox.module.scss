@@ -6,9 +6,18 @@
     margin-inline: auto;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, 150px);
     grid-template-rows: auto;
     gap: 2rem;
     justify-content: center;
     align-items: center;
+
+    @media screen and (min-width: 768px) {
+        grid-template-columns: repeat(auto-fill, 220px);
+        
+    }
+
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: repeat(auto-fill, 250px);
+    }
 }

@@ -8,26 +8,29 @@ import PrivateRoute from 'services/PrivateRoute';
 import { AuthProvider } from 'contexts/AuthContext';
 import { UserProvider } from 'contexts/UserContext';
 import { PopupProvider } from 'contexts/AddListContext';
+import MediaExtendProvider from 'contexts/MediaExtendContext';
 
 export default function Router() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <UserProvider>
-          <PopupProvider>
-            <Routes>
-              <Route path='/' element={<DefaultPage />}>
-                  <Route index element={<Home />} />
-                <Route path='/register' element={<SignUp />} />
-                <Route path='/login' element={<Login />} />
-                <Route element={<PrivateRoute />}>
-                  <Route path='/account' element={<Account />} />
+      <MediaExtendProvider>
+        <AuthProvider>
+          <UserProvider>
+            <PopupProvider>
+              <Routes>
+                <Route path='/' element={<DefaultPage />}>
+                    <Route index element={<Home />} />
+                  <Route path='/register' element={<SignUp />} />
+                  <Route path='/login' element={<Login />} />
+                  <Route element={<PrivateRoute />}>
+                    <Route path='/account' element={<Account />} />
+                  </Route>
                 </Route>
-              </Route>
-            </Routes>
-          </PopupProvider>
-        </UserProvider>
-      </AuthProvider>
+              </Routes>
+            </PopupProvider>
+          </UserProvider>
+        </AuthProvider>
+      </MediaExtendProvider>
     </BrowserRouter>
   );
 }

@@ -2,6 +2,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import banners from 'json/banners.json';
 import Banner from "components/Banner";
+import './CarouselBanner.scss';
 
 export default function CarouselBanner() {
     const responsive = {

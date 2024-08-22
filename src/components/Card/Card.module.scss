@@ -2,8 +2,14 @@
 
 .card {
     width: 100%;
-    height: 400px;
+    height: 40vh;
+    max-height: 300px;
     position: relative;
+
+    @media screen and (min-width: 768px) {
+        height: 400px;
+        max-height: 400px;
+    }
 
     &__title {
         font-size: 1.6rem;
@@ -73,6 +79,16 @@
             max-height: 200px;
             display: flex;
         }
+
+        .btns {
+            display: flex;
+            position: absolute;
+            bottom: 2rem;
+            align-items: center;
+            gap: 1.5rem;
+            right: 1.6rem;
+            flex-direction: row-reverse;
+        }
     }
 
     &:hover {
@@ -101,7 +117,7 @@
 }
 
 .rel_top {
-    transform: translateY(-50%);
+    transform: translateY(-40%);
 }
 
 @keyframes heightEntry {

@@ -15,5 +15,11 @@ export interface IBanner {
     type: string,
     local: boolean,
     src: string,
-    alt: string
+    alt: string,
+    title: string,
+    description: string,
+    button: {
+        text: string,
+        link: string
+    }[]
 }
