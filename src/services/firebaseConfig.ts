@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB5NPSQwVoAW6WErxxF_3q4SGu8R9eXB4Y",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "we-watch-db.firebaseapp.com",
   projectId: "we-watch-db",
   storageBucket: "we-watch-db.appspot.com",

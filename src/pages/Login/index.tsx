@@ -8,16 +8,16 @@ import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('')
   const navigate = useNavigate();
 
   const handleSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('Usuário registrado com sucesso!');
       navigate('/')
     } catch (error: any) {
-      alert(error.message);
+      setError(error.message);
     }
   };
 
@@ -30,6 +30,7 @@ export default function Login() {
         setEmail={setEmail}
         password={password}
         setPassword={setPassword}
+        error={error}
       />
     </AccessSection>
   );

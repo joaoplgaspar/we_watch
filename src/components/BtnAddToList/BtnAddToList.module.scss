@@ -1,0 +1,20 @@
+@import 'styles/variaveis';
+
+.btn__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    backdrop-filter: blur(20px);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: $bg-white solid 1px;
+    color: $texts-white;
+    cursor: pointer;
+    position: absolute;
+    bottom: 2rem;
+    right: 1rem;
+    font-size: 1.6rem;
+}

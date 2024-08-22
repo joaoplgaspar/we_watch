@@ -21,6 +21,12 @@
         padding-block: 2rem 1rem;
     }
 
+    .error_message {
+        color: #f00;
+        font-size: 1.6rem;
+        font-family: $font-text;
+    }
+
     .link {
         font-size: 1.4rem;
         font-weight: 400;

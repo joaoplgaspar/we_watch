@@ -7,7 +7,7 @@ export const getUserData = async (uid: string) => {
     if (userDoc.exists()) {
       return userDoc.data();
     } else {
-      console.log('No such document!');
+      console.log('No user data found!');
       return null;
     }
   } catch (error) {

@@ -8,4 +8,12 @@ export interface IAccessForm {
     setPassword: (password: string) => void;
     confirmPassword?: string;
     setConfirmPassword?: (confirmPassword: string) => void;
+    error: string;
+}
+
+export interface IBanner {
+    type: string,
+    local: boolean,
+    src: string,
+    alt: string
 }

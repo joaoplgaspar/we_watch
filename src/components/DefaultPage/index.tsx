@@ -1,4 +1,5 @@
 import Header from 'components/Header'
+import PopupAddToList from 'components/PopupAddToList'
 import { Outlet } from 'react-router-dom'
 
 export default function DefaultPage() {
@@ -8,6 +9,7 @@ export default function DefaultPage() {
         <main>
             <Outlet />
         </main>
+        <PopupAddToList/>
     </>
   )
 }
