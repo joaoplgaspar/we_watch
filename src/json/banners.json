@@ -1,0 +1,26 @@
+[
+    {
+        "type": "video",
+        "local": true,
+        "src": "miles_and_gwen.mp4",
+        "alt": "Banner Miles and Gwen"
+    },
+    {
+        "type": "video",
+        "local": true,
+        "src": "yuji.mp4",
+        "alt": "Banner Yuji"
+    },
+    {
+        "type": "image",
+        "src": "movies.jpg",
+        "alt": "Banner Movies",
+        "local": true
+    },
+    {
+        "type": "video",
+        "src": "https://static.moewalls.com/videos/preview/2024/rick-and-morty-spaceship-preview.mp4",
+        "alt": "Banner Rick and Morty",
+        "local": false
+    }
+]
