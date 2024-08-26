@@ -11,6 +11,7 @@
     background: transparent;
     transition: .3s all;
     backdrop-filter: blur(50px);
+    cursor: pointer;
 
     &:hover {
         background: $bg-black;

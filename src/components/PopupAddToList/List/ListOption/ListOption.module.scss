@@ -1,0 +1,39 @@
+@import 'styles/variaveis';
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #8d8d8d1f;
+    padding: 1rem;
+
+    .heading {
+        color: $texts-white;
+        font-family: $font-title;
+        opacity: 0.5;
+        transition: .3s ease;
+
+        .title {
+            font-size: clamp(1.8rem, 2vw, 2rem);
+            font-weight: 500;
+        }
+
+        .type {
+            font-size: clamp(1.4rem, 2vw, 1.6rem);
+            font-weight: 300;
+        }
+    }
+
+    .count {
+        color: #8b8b8b95;
+        font-size: clamp(1.4rem, 2vw, 1.6rem);
+        font-family: $font-title;
+    }
+
+    &:hover {
+        .heading {
+            opacity: 1;
+        }
+    }
+}

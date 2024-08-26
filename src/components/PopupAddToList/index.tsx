@@ -1,16 +1,23 @@
 import { usePopup } from 'contexts/AddListContext';
 import styles from './PopupAddToList.module.scss';
-import { IoMdClose } from 'react-icons/io';
 import { useAuth } from 'contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useUser } from 'contexts/UserContext';
+import List from './List';
+import NewListPopup from './NewListPopup';
 
 
 export default function PopupAddToList() {
+  const [newListDisplay, setNewListDisplay] = useState(false);
   const { isOpen, closePopup } = usePopup();
   const { currentUser } = useAuth();
+  const { userData } = useUser();
   const navigate = useNavigate()
+
+  if(isOpen) document.body.style.overflow = 'hidden';
+  else document.body.style.overflow = 'auto';
 
   useEffect(() => {
     if (!currentUser && isOpen) {
@@ -19,16 +26,28 @@ export default function PopupAddToList() {
     }
   }, [currentUser, navigate, closePopup, isOpen]);
 
+  const handleClose = () => {
+    closePopup();
+    setNewListDisplay(false);
+  }
+
   return (
     <div className={classNames({
       [styles.popup__container]: true,
       [styles.popup__close]: !isOpen
     })}>
       <div className={styles.popup__content}>
-        <h3>Popup</h3>
-        <div className={styles.close}>
-            <IoMdClose onClick={() => closePopup()}/>
-        </div>
+        <List 
+          handleClose={handleClose} 
+          open={!newListDisplay}
+          setNewListDisplay={setNewListDisplay}
+          lists={userData?.minhasListas}
+        />
+        <NewListPopup 
+          open={newListDisplay} 
+          setOpen={setNewListDisplay}
+          handleClose={handleClose}
+        />
       </div>
     </div>
   )

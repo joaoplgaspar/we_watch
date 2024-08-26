@@ -31,7 +31,6 @@ export default function RateMedia({ mediaData }: RateMediaProps) {
                 [styles.content]: true,
                 [styles.content__open]: isOpen
             })}>
-                <Stars rate={rate} setRate={setRate} />
                 {/* AJUSTAR CODIGO: colocar aria labels */}
                 <textarea 
                     onChange={(e) => setDesc(e.target.value)} 
@@ -39,6 +38,7 @@ export default function RateMedia({ mediaData }: RateMediaProps) {
                     className={styles.textarea}
                     placeholder='Salve sua opinião!' 
                 /> 
+                <Stars rate={rate} setRate={setRate} />
                 <button 
                     className={styles.btn}
                     onClick={() => handleSubmit()}

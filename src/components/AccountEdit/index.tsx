@@ -7,9 +7,8 @@ import Input from 'components/Input';
 import ButtonSubmit from 'components/ButtonSubmit';
 import classNames from 'classnames';
 import ImagePicker from './ImagePicker';
-import useFirebase from 'hooks/useFirebase';
-
 import avatares from 'json/avatar.json';
+import { updateUserProfile } from 'services/userService';
 
 interface Props {
     visible: boolean;
@@ -19,8 +18,6 @@ interface Props {
 export default function AccountEdit({ visible, setVisible }: Props) {
     const { currentUser } = useAuth();
     const { userData, loading, updateUserData } = useUser();
-    const { doc, setDoc, db } = useFirebase();
-
     const [avatar, setAvatar] = useState<string | null>('');
     const [name, setName] = useState<string>('');
     const [avatarPicker, setAvatarPicker] = useState<boolean>(false);
@@ -45,10 +42,16 @@ export default function AccountEdit({ visible, setVisible }: Props) {
                     name: name,
                     avatar: avatar,
                 };
-                await setDoc(doc(db, 'users', currentUser.uid), updatedUserData, { merge: true });
-                updateUserData(updatedUserData);
-                alert('Dados atualizados com sucesso');
-                setVisible(false);
+
+                const success = await updateUserProfile(currentUser.uid, updatedUserData);
+                
+                if (success) {
+                    updateUserData(updatedUserData);
+                    alert('Dados atualizados com sucesso');
+                    setVisible(false);
+                } else {
+                    alert('Erro ao atualizar os dados');
+                }
             }
         } catch (error) {
             console.error('Erro ao atualizar os dados do usuário', error);

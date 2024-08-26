@@ -16,9 +16,7 @@ export default function SignUp() {
   const handleSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (password !== confirmPassword) {
-      return alert('As senhas não coincidem');
-    }
+    if (password !== confirmPassword) return alert('As senhas não coincidem');
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -28,6 +26,13 @@ export default function SignUp() {
         name: '',
         email,
         avatar: '',
+        minhasListas: [{
+          name: 'Minha Lista',
+          privacidade: 'Privada',
+          midias: [],
+          dataCriacao: new Date(),
+        }],
+        favoritos: [],
       });
       
       navigate('/account?edit');

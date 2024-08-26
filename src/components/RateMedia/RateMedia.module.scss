@@ -14,8 +14,8 @@
         background: $bg-black;
         display: flex;
         padding: .8rem 1rem;
-        border-bottom: 2px solid $texts-white;
-        border-top: 2px solid $texts-white;
+        border-bottom: 1px solid $texts-white;
+        border-top: 1px solid $texts-white;
         align-items: center;
         justify-content: center;
         cursor: pointer;
@@ -29,7 +29,7 @@
         overflow: hidden;
         align-items: center;
         padding-inline: 1rem;
-        grid-template-columns: .7fr 1fr;
+        grid-template-columns: 1fr .6fr;
 
         .textarea {
             padding: 1rem;
@@ -59,9 +59,12 @@
             background: transparent;
             transition: .3s all;
             backdrop-filter: blur(50px);
+            cursor: pointer;
 
             &:hover {
-                background: $bg-black;
+                background: $bg-white;
+                color: $texts-black;
+                border: 2px solid $bg-black;
             }
         }
     }
