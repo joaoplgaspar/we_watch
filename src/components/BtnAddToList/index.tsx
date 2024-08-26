@@ -1,10 +1,13 @@
 import { usePopup } from 'contexts/AddListContext';
-import React from 'react'
 import { IoAddSharp } from "react-icons/io5";
 import styles from './BtnAddToList.module.scss'
 import classNames from 'classnames';
 
-export default function BtnAddToList() {
+interface BtnAddToListProps { 
+    large?: boolean;
+}
+
+export default function BtnAddToList({large}: BtnAddToListProps) {
     const { openPopup } = usePopup();
 
     const handleClick = () => {
@@ -16,7 +19,8 @@ export default function BtnAddToList() {
         <button 
             onClick={handleClick}
             className={classNames({
-                [styles.btn__container]: true
+                [styles.btn__container]: true,
+                [styles.large]: large
             })}
         >
             <IoAddSharp />

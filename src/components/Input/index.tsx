@@ -13,8 +13,17 @@ interface Props {
 export default function Input({type, value, onChange, placeholder, required, label}: Props) {
   return (
     <div className={styles.field}>
-        {label && <label htmlFor={type}>{label}</label>}
-        <input type={type} value={value} onChange={onChange} placeholder={placeholder} required={required} className={styles.access_input} id={type} name={type}/>
+        {label && <label htmlFor={placeholder}>{label}</label>}
+        <input 
+          type={type} 
+          value={value} 
+          onChange={onChange} 
+          placeholder={placeholder} 
+          required={required} 
+          className={styles.access_input} 
+          id={placeholder} 
+          name={type}
+        />
     </div>
   )
 }

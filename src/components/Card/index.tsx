@@ -11,9 +11,9 @@ interface CardProps {
 }
 
 export default function Card({relTop, mediaData}: CardProps) {
+  const { openMedia } = useMediaExtend();
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
   const POSTER_SIZE = 'w500';
-  const { openMedia } = useMediaExtend();
 
   return (
     <div 
@@ -30,6 +30,7 @@ export default function Card({relTop, mediaData}: CardProps) {
             src={`${BASE_IMAGE_URL}${POSTER_SIZE}${mediaData.poster_path}`}
             alt={mediaData.title}
             className={styles.card_image__container__image}
+            onClick={() => openMedia(mediaData)}
           />
         </div>
       )}

@@ -4,6 +4,7 @@ import { IoMdClose } from 'react-icons/io';
 import { useAuth } from 'contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
+import { useEffect } from 'react';
 
 
 export default function PopupAddToList() {
@@ -11,10 +12,12 @@ export default function PopupAddToList() {
   const { currentUser } = useAuth();
   const navigate = useNavigate()
 
-  if(!currentUser) {
-    navigate('/login')
-    closePopup()
-  }
+  useEffect(() => {
+    if (!currentUser && isOpen) {
+      navigate('/login');
+      closePopup();
+    }
+  }, [currentUser, navigate, closePopup, isOpen]);
 
   return (
     <div className={classNames({

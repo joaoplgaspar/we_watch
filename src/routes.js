@@ -19,7 +19,7 @@ export default function Router() {
             <PopupProvider>
               <Routes>
                 <Route path='/' element={<DefaultPage />}>
-                    <Route index element={<Home />} />
+                  <Route index element={<Home />} />
                   <Route path='/register' element={<SignUp />} />
                   <Route path='/login' element={<Login />} />
                   <Route element={<PrivateRoute />}>

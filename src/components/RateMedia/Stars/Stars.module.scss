@@ -1,0 +1,24 @@
+@import 'styles/variaveis';
+
+.stars__container {
+    display: flex;
+    align-items: center;
+
+    .star {
+        cursor: pointer;
+
+        &__icon {
+            path {
+                fill: transparent;
+                stroke: $bg-white;
+            }
+        }
+
+        &__icon__active {
+            path {
+                fill: $bg-white;
+                stroke: $bg-white;
+            }
+        }
+    }
+}
