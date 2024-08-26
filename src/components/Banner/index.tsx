@@ -1,13 +1,15 @@
 import { IBanner } from 'types/Components';
 import styles from './Banner.module.scss';
 import LinkButton from 'components/LinkButton';
+import { useState } from 'react';
 
 export default function Banner({ type, local, src, alt, title, description, button }: IBanner) {
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   function bannerMedia() {
     if (type === 'image') {
       const srcBanner = local ? `assets/images/banners/${src}` : src;
-      return <img src={srcBanner} alt={alt} className={styles.banner_image} />;
+      return <img src={srcBanner} alt={alt} className={styles.banner_image} onLoadedData={() => setVideoLoaded(true)}/>;
     } else {
       const srcBanner = local ? `assets/videos/${src}` : src;
       return (
@@ -16,7 +18,8 @@ export default function Banner({ type, local, src, alt, title, description, butt
           muted
           loop
           autoPlay
-          className={styles.banner_video}
+          className={`${styles.banner_video} ${videoLoaded ? styles.loaded : ''}`}
+          onLoadedData={() => setVideoLoaded(true)}
         ></video>
       );
     }
@@ -29,9 +32,9 @@ export default function Banner({ type, local, src, alt, title, description, butt
         <p dangerouslySetInnerHTML={{ __html: description }} />
         <div className={styles.btns__container}>
           {button.map((btn, index) => (
-              <LinkButton key={index} to={btn.link}>
-                {btn.text}
-              </LinkButton>
+            <LinkButton key={index} to={btn.link}>
+              {btn.text}
+            </LinkButton>
           ))}
         </div>
       </div>

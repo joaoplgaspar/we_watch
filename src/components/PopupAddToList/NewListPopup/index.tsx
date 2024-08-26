@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import styles from './NewListPopup.module.scss';
-import { IoMdArrowRoundBack, IoMdClose } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import { useAuth } from 'contexts/AuthContext';
 import { useUser } from 'contexts/UserContext';
 import { addUserList } from 'services/userService';
 import { useState } from 'react';
+import BtnBack from 'components/BtnBack';
 
 interface NewListPopupProps {
     open: boolean;
@@ -20,6 +21,10 @@ export default function NewListPopup({ open, setOpen, handleClose }: NewListPopu
 
     const handleSubmit = async () => {
         if (!currentUser) return;
+        if (listName === '') return alert('Nome da lista não pode ser vazio');
+        
+        const listExists = userData.minhasListas.find((list: any) => list.name === listName);
+        if (listExists) return alert('Lista já existe');
 
         const newList = {
             name: listName,
@@ -32,6 +37,8 @@ export default function NewListPopup({ open, setOpen, handleClose }: NewListPopu
         
         if (success) {
             updateUserData({ ...userData, minhasListas: [...userData.minhasListas, newList] });
+            setListName('');
+            setListType('private');
             setOpen(false);
             alert('Dados atualizados com sucesso');
         } else {
@@ -46,7 +53,7 @@ export default function NewListPopup({ open, setOpen, handleClose }: NewListPopu
         })}>
             <div className={styles.heading}>
                 <div className={styles.heading__left}>
-                    <IoMdArrowRoundBack className={styles.back__icon} onClick={() => setOpen(false)} aria-label="Voltar"/>
+                    <BtnBack setOpen={setOpen}/>
                     <h3 className={styles.title}>Criar nova lista</h3>
                 </div>
                 <IoMdClose onClick={() => handleClose()} className={styles.close__icon} aria-label="Fechar"/>

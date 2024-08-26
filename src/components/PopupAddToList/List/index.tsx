@@ -21,7 +21,8 @@ export default function List({ handleClose, open, setNewListDisplay, lists }: Li
             <IoMdClose onClick={() => handleClose()} className={styles.close__icon}/>
         </div>
         {lists?.map((midia: any) => (
-            <ListOption 
+            <ListOption
+                list={midia} 
                 itensInList={midia.midias.length}
                 listType={midia.privacidade}
                 listName={midia.name}
