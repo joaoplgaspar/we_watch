@@ -1,6 +1,6 @@
 import BtnAddToList from 'components/BtnAddToList';
 import styles from './Card.module.scss';
-import { IMedia } from 'types/Media';
+import { IMedia } from 'types/IMedia';
 import classNames from 'classnames';
 import BtnAddToFavorite from 'components/BtnAddToFavorite';
 import { useMediaExtend } from 'contexts/MediaExtendContext';
@@ -39,8 +39,8 @@ export default function Card({relTop, mediaData}: CardProps) {
         <h3 className={styles.card__hover__title} onClick={() => openMedia(mediaData)}>{mediaData.title}</h3>
         <p className={styles.description} onClick={() => openMedia(mediaData)}>{mediaData.overview}</p>
         <div className={styles.btns}>
-          <BtnAddToList />
-          <BtnAddToFavorite />
+          <BtnAddToList mediaId={mediaData.id}/>
+          <BtnAddToFavorite mediaId={mediaData.id}/>
         </div>
       </div>
     </div>

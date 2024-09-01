@@ -28,7 +28,7 @@ export default function ExtendsMedia() {
           <p className={styles.description}>{mediaData?.overview}</p>
         </div> 
         <div className={styles.btns__container}>
-          <BtnAddToFavorite large/>
+          <BtnAddToFavorite large mediaId={mediaData?.id}/>
           <BtnAddToList large/>
         </div>
         <RateMedia mediaData={mediaData}/>

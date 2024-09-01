@@ -1,35 +1,45 @@
 @import 'styles/variaveis';
 
 .container {
-    animation: close 0.6s ease;
     display: none;
     transform: translateX(-110%);
-    position: relative;
     width: 100%;
     flex-direction: column;
     height: 100%;
-    justify-content: center;
+    animation: close 0.6s ease;
+    justify-content: space-between;
 
-    .heading {
+    .head {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 2.4rem;
+        flex-direction: column;
+        max-height: 80%;
+        height: 100%;
 
-        .title {
-            color: $texts-white;
-            font-family: $font-title;
-            font-weight: 700;
-            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+        .heading_content {
+            overflow: auto;
         }
 
-        .close__icon {
-            color: $texts-white;
-            cursor: pointer;
-            font-size: 3.2rem;
-        }
-    }    
+        .heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.4rem;
     
+            .title {
+                color: $texts-white;
+                font-family: $font-title;
+                font-weight: 700;
+                font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            }
+    
+            .close__icon {
+                color: $texts-white;
+                cursor: pointer;
+                font-size: 3.2rem;
+            }
+        }  
+    }
+
     .new_list {
         width: 80%;
         display: flex;
@@ -38,7 +48,6 @@
         border-top: 1px solid rgba(146, 146, 146, 0.333);
         justify-self: flex-end;
         align-self: center;
-        margin-top: 2rem;
 
         :is(button) {
             text-decoration: none;
@@ -79,6 +88,7 @@
 
     100% {
         transform: translateX(0);
+        display: flex;
     }
 }
 
@@ -86,7 +96,6 @@
     0% {
         transform: translateX(0);
         display: flex;
-        position: absolute;
     }
 
     99% {
@@ -96,6 +105,5 @@
     100% {
         display: none;
         transform: translateX(-110%);
-        position: absolute;
     }
 }

@@ -5,14 +5,14 @@ import classNames from 'classnames';
 
 interface BtnAddToListProps { 
     large?: boolean;
+    mediaId?: number;
 }
 
-export default function BtnAddToList({large}: BtnAddToListProps) {
+export default function BtnAddToList({large, mediaId}: BtnAddToListProps) {
     const { openPopup } = usePopup();
 
     const handleClick = () => {
-        const newData = { message: 'Novas informações' };
-        openPopup(newData);
+        openPopup(mediaId);
     };
 
     return (

@@ -1,4 +1,4 @@
-import { IBanner } from 'types/Components';
+import { IBanner } from 'types/IComponents';
 import styles from './Banner.module.scss';
 import LinkButton from 'components/LinkButton';
 import { useState } from 'react';

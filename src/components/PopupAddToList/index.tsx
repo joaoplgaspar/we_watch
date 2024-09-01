@@ -8,10 +8,9 @@ import { useUser } from 'contexts/UserContext';
 import List from './List';
 import NewListPopup from './NewListPopup';
 
-
 export default function PopupAddToList() {
   const [newListDisplay, setNewListDisplay] = useState(false);
-  const { isOpen, closePopup } = usePopup();
+  const { isOpen, closePopup, popupData } = usePopup();
   const { currentUser } = useAuth();
   const { userData } = useUser();
   const navigate = useNavigate()
@@ -42,6 +41,7 @@ export default function PopupAddToList() {
           open={!newListDisplay}
           setNewListDisplay={setNewListDisplay}
           lists={userData?.minhasListas}
+          mediaId={popupData}
         />
         <NewListPopup 
           open={newListDisplay} 

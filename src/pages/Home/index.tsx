@@ -3,7 +3,7 @@ import CardsBox from 'components/CardsBox';
 import CarouselBanner from 'components/CarouselBanner';
 import { useEffect, useState } from 'react';
 import getApi from 'services/getApi';
-import { IMedia } from 'types/Media';
+import { IMedia } from 'types/IMedia';
 
 export default function Home() {
   const [moviesBox, setMoviesBox] = useState<IMedia[]>([]);

@@ -8,27 +8,34 @@ interface ListProps {
     open: boolean;
     setNewListDisplay: (value: boolean) => void;
     lists: any;
+    mediaId: number;
 }
 
-export default function List({ handleClose, open, setNewListDisplay, lists }: ListProps) {
+export default function List({ handleClose, open, setNewListDisplay, lists, mediaId }: ListProps) {
   return (
     <div className={classNames({
       [styles.container]: true,
       [styles.open]: open
     })}>
-        <div className={styles.heading}>
-            <h3 className={styles.title}>Selecione uma lista</h3>
-            <IoMdClose onClick={() => handleClose()} className={styles.close__icon}/>
+        <div className={styles.head}>
+          <div className={styles.heading}>
+              <h3 className={styles.title}>Selecione uma lista</h3>
+              <IoMdClose onClick={() => handleClose()} className={styles.close__icon}/>
+          </div>
+          <div className={styles.heading_content}>
+            {lists?.map((midia: any) => (
+                <ListOption
+                    list={midia} 
+                    itensInList={midia.midias.length}
+                    listType={midia.privacidade}
+                    listName={midia.name}
+                    key={midia.name}
+                    mediaId={mediaId}
+                    handleClose={handleClose}
+                />
+            ))}
+          </div>
         </div>
-        {lists?.map((midia: any) => (
-            <ListOption
-                list={midia} 
-                itensInList={midia.midias.length}
-                listType={midia.privacidade}
-                listName={midia.name}
-                key={midia.name}
-            />
-        ))}
         <div className={styles.new_list}>
           <button onClick={() => setNewListDisplay(true)}>Criar nova lista</button>
         </div>

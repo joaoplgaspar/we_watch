@@ -2,7 +2,7 @@ import styles from './AccessForm.module.scss'
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
 import ButtonSubmit from 'components/ButtonSubmit';
-import { IAccessForm } from 'types/Components';
+import { IAccessForm } from 'types/IComponents';
 import classNames from 'classnames';
 
 export default function AccessForm ({

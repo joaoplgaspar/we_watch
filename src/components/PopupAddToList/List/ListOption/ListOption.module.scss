@@ -1,24 +1,38 @@
 @import 'styles/variaveis';
 
 .container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    background: #8d8d8d1f;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    justify-content: space-between;
     position: relative;
+
+    .option {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background: #2a2a2a83;
+        padding: clamp(0.8rem, 2vw, 1rem);
+        margin-bottom: 2rem;
+        justify-content: space-between;
+
+        &:hover {
+            .heading {
+                opacity: 1;
+            }
+        }
+    }
 
     .heading {
         color: $texts-white;
         font-family: $font-title;
         opacity: 0.5;
         transition: .3s ease;
+        width: 90%;
 
         .title {
-            font-size: clamp(1.8rem, 2vw, 2rem);
-            font-weight: 500;
+            font-size: clamp(1.6rem, 2vw, 2rem);
+            font-weight: 400;
+
+            @media screen and (min-width: 768px) {
+                font-weight: 500;
+            }
         }
 
         .type {
@@ -48,13 +62,6 @@
             }
         }
     }
-
-    &:hover {
-        .heading {
-            opacity: 1;
-        }
-    }
-
 
     .exclude__container {
         position: absolute;
