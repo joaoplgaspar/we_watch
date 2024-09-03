@@ -33,6 +33,7 @@ export default function SignUp() {
           dataCriacao: new Date(),
         }],
         favoritos: [],
+        avaliacoes: []
       });
       
       navigate('/account?edit');

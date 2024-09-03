@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import { MdAccountCircle } from "react-icons/md";
 import { IoMdLogIn } from "react-icons/io";
 import { useUser } from 'contexts/UserContext';
+import { CiSearch } from "react-icons/ci";
+import { GiHamburgerMenu } from "react-icons/gi";
+import NavItems from './NavItems';
 
 
 export default function Header() {
@@ -59,14 +62,17 @@ export default function Header() {
       })}
     >
       <div className={styles.header__content}>
+        <GiHamburgerMenu className={styles.menu_icon}/>
+        {/* <NavItems /> */}
         <h1 className={styles.header__content__title}>
-          <MdMovie />
+          <MdMovie className={styles.movie_icon}/>
           <Link to="/" className={styles.header__content__title}>
             We Watch
           </Link>
         </h1>
         <nav className={styles.header__content__nav}>
           <ul className={styles.nav_list}>
+            <CiSearch className={styles.icon_search}/>
             {accountIcon()}
           </ul>
         </nav>

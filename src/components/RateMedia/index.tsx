@@ -15,16 +15,20 @@ export default function RateMedia({ mediaData }: RateMediaProps) {
     const [rate, setRate] = useState(-1);
     const [desc, setDesc] = useState('');
     const [isOpen, setIsOpen] = useState(false);
-    const { userData } = useUser();
+    const { userData, updateUserData } = useUser();
     const { currentUser } = useAuth();
 
     const handleSubmit = async () => {
         if(!currentUser) return;
+        let newList:[]
 
-        const avaliacoes = userData.avaliacoes || [];
+        const avaliacaoExists = userData.avaliacoes.find((a: any) => a.mediaId === mediaData?.id);
+
+        if(avaliacaoExists) newList = userData.avaliacoes.filter((a: any) => a.mediaId !== mediaData?.id);
+        else newList = userData.avaliacoes;
 
         const updatedRate = [
-            ...avaliacoes,
+            ...newList,
             {
                 rate: rate,
                 desc: desc,
@@ -35,6 +39,7 @@ export default function RateMedia({ mediaData }: RateMediaProps) {
         const success = await updateUserRate(currentUser.uid, updatedRate);
 
         if(success) {
+            updateUserData({ ...userData, avaliacoes: updatedRate});
             alert('Avaliação salva com sucesso!');
             return setIsOpen(false);
         } 
@@ -46,7 +51,14 @@ export default function RateMedia({ mediaData }: RateMediaProps) {
         setRate(-1);
         setDesc('');
         setIsOpen(false);
-    }, [mediaData]);
+        if(userData && Array.isArray(userData.avaliacoes)) {
+            const avaliacao = userData.avaliacoes.find((a: any) => a.mediaId === mediaData?.id);
+            if(avaliacao) {
+                setRate(avaliacao.rate);
+                setDesc(avaliacao.desc);
+            }
+        }
+    }, [userData, mediaData]);
 
     return (
         <div className={styles.container}>

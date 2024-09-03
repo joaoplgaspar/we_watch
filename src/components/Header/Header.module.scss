@@ -18,28 +18,43 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative;
+
+        .menu_icon {
+            font-size: 2.4rem;
+            color: $texts-white;
+            animation: $topDownEntry;
+        }
 
         &__title {
-            display: flex;
-            align-items: center;
             color: $texts-white;
             font-family: $font-text;
             font-size: 2.4rem;
             gap: 1rem;
             text-decoration: none;
             animation: $topDownEntry;
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            text-wrap: nowrap;
+
+            .movie_icon {
+                display: none;
+            }
         }
 
         &__nav {
             .nav_list {
                 display: flex;
+                align-items: center;
                 list-style-type: none;
                 gap: 2rem;
 
                 .nav_item {
                     text-decoration: none;
                     font-family: $font-title;
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
                     color: $texts-white;
                     display: flex;
                     align-items: center;
@@ -58,6 +73,15 @@
                             object-fit: cover;
                             transform: scale(1.2);
                         }
+                    }
+                }
+
+                .icon_search {
+                    font-size: 2.4rem;
+                    color: $texts-white;
+
+                    @media screen and (max-width: 290px) {
+                        display: none;
                     }
                 }
             }
