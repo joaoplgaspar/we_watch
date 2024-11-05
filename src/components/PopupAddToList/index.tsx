@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react';
 import { useUser } from 'contexts/UserContext';
 import List from './List';
 import NewListPopup from './NewListPopup';
+import { useMediaExtend } from 'contexts/MediaExtendContext';
 
 export default function PopupAddToList() {
   const [newListDisplay, setNewListDisplay] = useState(false);
+  const { closeMedia } = useMediaExtend();
   const { isOpen, closePopup, popupData } = usePopup();
   const { currentUser } = useAuth();
   const { userData } = useUser();
@@ -20,8 +22,9 @@ export default function PopupAddToList() {
 
   useEffect(() => {
     if (!currentUser && isOpen) {
-      navigate('/login');
       closePopup();
+      closeMedia();
+      navigate('/login');
     }
   }, [currentUser, navigate, closePopup, isOpen]);
 

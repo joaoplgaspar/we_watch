@@ -23,6 +23,17 @@ export const addUserList = async (uid: string, newList: any) => {
   }
 };
 
+export const addSharedList = async (newList: any) => {
+  try {
+    const listDocRef = doc(db, 'listasCompartilhadas', newList.codigo);  // Cria o documento com o código da lista
+    await setDoc(listDocRef, newList);  // Salva a lista na coleção listasCompartilhadas
+    return true;
+  } catch (error) {
+    console.error('Erro ao adicionar lista compartilhada', error);
+    return false;
+  }
+};
+
 export const removeFromUserList = async (uid: string, itemToRemove: any) => {
   try {
     const userDocRef = doc(db, 'users', uid);

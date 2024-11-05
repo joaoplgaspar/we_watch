@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from 'contexts/UserContext';
 import { updateUserFavorite } from 'services/userService';
 import { IFavorite } from 'types/IUserData';
+import { useMediaExtend } from 'contexts/MediaExtendContext';
 
 interface BtnAddToFavoriteProps {
     large?: boolean;
@@ -18,6 +19,7 @@ export default function BtnAddToFavorite({ large, mediaId }: BtnAddToFavoritePro
     const { userData, updateUserData } = useUser();
     const redirect = useNavigate();
     const [fav, setFav] = useState(false);
+    const { closeMedia } = useMediaExtend();
 
     useEffect(() => {
         if (userData && Array.isArray(userData.favoritos)) {
@@ -27,7 +29,10 @@ export default function BtnAddToFavorite({ large, mediaId }: BtnAddToFavoritePro
     }, [userData, mediaId]);
 
     const handleFav = async () => {
-        if (!currentUser) return redirect('/login');
+        if (!currentUser) {
+            closeMedia();
+            return redirect('/login')
+        }
 
         const favoritos: IFavorite[] = Array.isArray(userData?.favoritos) ? userData.favoritos : [];
         const existe = favoritos.find((f) => f.mediaId === mediaId);

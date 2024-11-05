@@ -9,6 +9,7 @@ import { AuthProvider } from 'contexts/AuthContext';
 import { UserProvider } from 'contexts/UserContext';
 import { PopupProvider } from 'contexts/AddListContext';
 import MediaExtendProvider from 'contexts/MediaExtendContext';
+import SharedList from 'pages/SharedList';
 
 export default function Router() {
   return (
@@ -25,6 +26,7 @@ export default function Router() {
                   <Route element={<PrivateRoute />}>
                     <Route path='/account' element={<Account />} />
                   </Route>
+                  <Route path='/lista/:codigo'  element={<SharedList />} />
                 </Route>
               </Routes>
             </PopupProvider>

@@ -3,9 +3,10 @@ import styles from './NewListPopup.module.scss';
 import { IoMdClose } from "react-icons/io";
 import { useAuth } from 'contexts/AuthContext';
 import { useUser } from 'contexts/UserContext';
-import { addUserList } from 'services/userService';
+import { addUserList, addSharedList } from 'services/userService'; // Importando a nova função
 import { useState } from 'react';
 import BtnBack from 'components/BtnBack';
+import { v4 as uuidv4 } from 'uuid';  // Para gerar um código único
 
 interface NewListPopupProps {
     open: boolean;
@@ -16,8 +17,8 @@ interface NewListPopupProps {
 export default function NewListPopup({ open, setOpen, handleClose }: NewListPopupProps) {
     const { currentUser } = useAuth();
     const { userData, updateUserData } = useUser();
-    const [ listName, setListName ] = useState<string>('');
-    const [ listType, setListType ] = useState<string>('private');
+    const [listName, setListName] = useState<string>('');
+    const [listType, setListType] = useState<string>('private');
 
     const handleSubmit = async () => {
         if (!currentUser) return;
@@ -25,26 +26,40 @@ export default function NewListPopup({ open, setOpen, handleClose }: NewListPopu
         
         const listExists = userData.minhasListas.find((list: any) => list.name === listName);
         if (listExists) return alert('Lista já existe');
-
+    
+        const sharedListCode = listType === 'Compartilhada' ? uuidv4() : null;  // Gera um código único se for uma lista compartilhada
+    
         const newList = {
             name: listName,
             privacidade: listType,
             midias: [],
             dataCriacao: new Date(),
+            codigo: sharedListCode,  // Adiciona o código da lista
+            criador: currentUser.uid  // Adiciona o UID do criador
         };
 
-        const success = await addUserList(currentUser.uid, [...userData.minhasListas, newList]);
-        
+        let success;
+    
+        if (listType === 'Compartilhada') {
+            success = await addSharedList(newList);  // Chama a função para adicionar na coleção `listasCompartilhadas`
+        } else {
+            success = await addUserList(currentUser.uid, [...userData.minhasListas, newList]);  // Adiciona lista privada ao perfil do usuário
+        }
+
         if (success) {
             updateUserData({ ...userData, minhasListas: [...userData.minhasListas, newList] });
             setListName('');
             setListType('private');
             setOpen(false);
-            alert('Dados atualizados com sucesso');
+            if (sharedListCode) {
+                alert(`Lista compartilhada criada com sucesso! Código de compartilhamento: ${sharedListCode}`);
+            } else {
+                alert('Lista criada com sucesso!');
+            }
         } else {
             alert('Erro ao atualizar os dados');
         }
-    }
+    };
 
     return (
         <div className={classNames({

@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom';
 import { MdAccountCircle } from "react-icons/md";
 import { IoMdLogIn } from "react-icons/io";
 import { useUser } from 'contexts/UserContext';
-import { CiSearch } from "react-icons/ci";
-import { GiHamburgerMenu } from "react-icons/gi";
-import NavItems from './NavItems';
-
+import SearchForm from './SearchForm';
+import { MdOutlineMenu } from "react-icons/md";
 
 export default function Header() {
   const { userData, loading } = useUser();
@@ -17,6 +15,7 @@ export default function Header() {
   const [headerHidden, setHeaderHidden] = useState<boolean>(false);
   const [headerBlur, setHeaderBlur] = useState<boolean>(false);
   const [avatar, setAvatar] = useState<string | null>('');
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   let initialScroll = window.scrollY;
 
   useEffect(() => {
@@ -36,22 +35,24 @@ export default function Header() {
   const accountIcon = () => {
     if (userData) {
       return (
-        <li>
+        <div>
           <Link to="/account" className={styles.nav_item}>
             {loading ? <MdAccountCircle size={35}/> : <img src={`assets/images/avatar/${avatar}`} alt="Avatar da conta"/>}
           </Link>
-        </li>
+        </div>
       )
     } else {
       return (
-        <li>
+        <div>
           <Link to="/login" className={styles.nav_item}>
-            <IoMdLogIn size={35}/>
+            <IoMdLogIn className={styles.icon_login}/>
           </Link>
-        </li>
+        </div>
       )
     }
   }
+
+  const navItens = ['Play', 'Midias', 'Listas']
 
   return (
     <header className={
@@ -62,8 +63,6 @@ export default function Header() {
       })}
     >
       <div className={styles.header__content}>
-        <GiHamburgerMenu className={styles.menu_icon}/>
-        {/* <NavItems /> */}
         <h1 className={styles.header__content__title}>
           <MdMovie className={styles.movie_icon}/>
           <Link to="/" className={styles.header__content__title}>
@@ -71,10 +70,19 @@ export default function Header() {
           </Link>
         </h1>
         <nav className={styles.header__content__nav}>
-          <ul className={styles.nav_list}>
-            <CiSearch className={styles.icon_search}/>
-            {accountIcon()}
+          <MdOutlineMenu className={styles.menu_mobile} onClick={() => setMenuOpen(!menuOpen)}/>
+          <ul className={classNames({
+            [styles.nav_list]: true,
+            [styles.nav_list__open]: menuOpen
+          })}>
+            {navItens.map((item, index) => (
+              <li key={index} className={styles.nav_item}>
+                <Link to={`/${item.toLowerCase()}`}>{item}</Link>
+              </li>
+            ))}
           </ul>
+          <SearchForm />
+          {accountIcon()}
         </nav>
       </div>
     </header>
