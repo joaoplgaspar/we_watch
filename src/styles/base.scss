@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Lexend:wght@100..900&display=swap');
 @import 'styles/variaveis';
 
 * {
@@ -14,4 +14,5 @@ html {
 body {
     background: $bg-home-gradient;
     overflow-x: hidden;
+    min-height: 100vh;
 }

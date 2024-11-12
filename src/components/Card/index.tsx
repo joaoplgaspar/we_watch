@@ -4,13 +4,15 @@ import { IMedia } from 'types/IMedia';
 import classNames from 'classnames';
 import BtnAddToFavorite from 'components/BtnAddToFavorite';
 import { useMediaExtend } from 'contexts/MediaExtendContext';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   mediaData: IMedia
-  relTop?: boolean
+  relTop?: boolean,
+  type: string
 }
 
-export default function Card({relTop, mediaData}: CardProps) {
+export default function Card({relTop, mediaData, type}: CardProps) {
   const { openMedia } = useMediaExtend();
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/';
   const POSTER_SIZE = 'w500';
@@ -34,9 +36,12 @@ export default function Card({relTop, mediaData}: CardProps) {
           />
         </div>
       )}
-      <h3 className={styles.card__title}>{mediaData.title}</h3>
       <div className={styles.card__hover_content}>
-        <h3 className={styles.card__hover__title} onClick={() => openMedia(mediaData)}>{mediaData.title}</h3>
+        <h3 className={styles.card__hover__title}>
+          <Link to={`/${type}/${mediaData.id}`}>
+            {mediaData.title}
+          </Link>
+        </h3>
         <p className={styles.description} onClick={() => openMedia(mediaData)}>{mediaData.overview}</p>
         <div className={styles.btns}>
           <BtnAddToList mediaId={mediaData.id}/>

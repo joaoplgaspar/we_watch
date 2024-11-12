@@ -36,24 +36,6 @@
         ]
     },
     {
-        "type": "image",
-        "src": "movies.jpg",
-        "alt": "Banner Movies",
-        "local": true,
-        "title": "We Watch",
-        "description": "Descubra a nova maneira de aproveitar seus <strong>filmes e séries favoritos</strong> com We Watch! <strong>Crie listas compartilhadas com amigos</strong>, conecte-se com outra  pessoa para <strong>montar uma seleção de filmes imperdíveis</strong> e encontre o  <strong>match</strong> perfeito para assistir juntos.",
-        "button": [
-            {
-                "text": "Explore",
-                "link": "/explorar"
-            },
-            {
-                "text": "Saiba mais",
-                "link": "/saiba-mais"
-            }
-        ]
-    },
-    {
         "type": "video",
         "src": "https://static.moewalls.com/videos/preview/2024/rick-and-morty-spaceship-preview.mp4",
         "alt": "Banner Rick and Morty",

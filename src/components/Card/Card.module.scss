@@ -2,13 +2,13 @@
 
 .card {
     width: 100%;
-    height: 40vh;
-    max-height: 300px;
+    height: 100%;
+    // max-height: 300px;
     position: relative;
 
     @media screen and (min-width: 768px) {
-        height: 400px;
-        max-height: 400px;
+        // height: 400px;
+        // max-height: 400px;
     }
 
     &__title {
@@ -29,10 +29,9 @@
     }
 
     &_image__container {
-        height: 90%;
+        height: 100%;
         width: 100%;
         overflow: hidden;
-        animation: heightExit .3s ease;
 
         &__image {
             height: 100%;
@@ -52,16 +51,12 @@
     }
 
     .btns {
-        display: flex;
-        position: absolute;
-        bottom: 4rem;
-        align-items: center;
-        gap: 1rem;
-        right: 1rem;
-        flex-direction: row-reverse;
+        display: none;
     }
 
     @media screen and (min-width: 768px) {
+        transition: border .1s;
+
         &::before {
             content: '';
             position: absolute;
@@ -113,12 +108,10 @@
         }
     
         &:hover {
+            border: .4rem solid $bg-white;
+
             &::before {
                 opacity: 0.8;
-            }
-    
-            .card_image__container {
-                animation: heightEntry .3s ease forwards;
             }
     
             .card__title {
@@ -136,29 +129,5 @@
                 width: 100%;
             }
         }
-    }
-}
-
-.rel_top {
-    transform: translateY(-40%);
-}
-
-@keyframes heightEntry {
-    0% {
-        height: 90%;
-    }
-
-    100% {
-        height: 100%;
-    }
-}
-
-@keyframes heightExit {
-    0% {
-        height: 100%;
-    }
-
-    100% {
-        height: 90%;
     }
 }
