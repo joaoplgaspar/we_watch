@@ -24,11 +24,12 @@ export default function Router() {
                   <Route index element={<Home />} />
                   <Route path='/register' element={<SignUp />} />
                   <Route path='/login' element={<Login />} />
+                  <Route path='/lista/:codigo'  element={<SharedList />} />
+                  <Route path='/:midia/:id' element={<Midia />} />
                   <Route element={<PrivateRoute />}>
                     <Route path='/account' element={<Account />} />
                   </Route>
-                  <Route path='/lista/:codigo'  element={<SharedList />} />
-                  <Route path='/:midia/:id' element={<Midia />} />
+                  <Route path='*' element={<h1>Not Found</h1>} />
                 </Route>
               </Routes>
             </PopupProvider>
